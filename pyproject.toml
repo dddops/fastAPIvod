@@ -2,7 +2,9 @@
 name = "fastapiproject"
 version = "0.1.0"
 description = ""
-authors = ["dddops <Eopseum0@gmail.com>"]
+authors = [
+    "dddops <Eopseum0@gmail.com>",
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -15,7 +17,9 @@ cryptography = "44.0.0"
 aerich = "0.8.1"
 tomlkit = "0.13.2"
 pydantic-settings = "2.7.1"
-
+strenum = "^0.4.15"
+aiomysql = "^0.2.0"
+httpx = "0.28.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "24.10.0"
@@ -25,24 +29,36 @@ pytest = "8.3.4"
 coverage = "7.6.9"
 pytest-asyncio = "0.25.0"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.black]
 line-length = 120
 
 [tool.ruff]
-target-version = 'py313'
+target-version = "py313"
 
 [tool.mypy]
-plugins = ["pydantic.mypy"]
+plugins = [
+    "pydantic.mypy",
+]
 python_version = 3.13
 strict = true
 
 [tool.coverage.run]
-omit = ["*/test_*.py"]  # 루트 혹은 루트 아래의 파일들 중 test_ 로 시작하는 파일을 제외.
+omit = [
+    "*/test_*.py",
+]
 
 [tool.pytest.ini_options]
-asyncio_mode = "auto"
-asyncio_default_fixture_loop_scope = "session"
+asyncio_mode = 'auto'
+asyncio_default_fixture_loop_scope = 'session'
+filterwarnings = ['ignore::DeprecationWarning']
+
+[tool.aerich]
+tortoise_orm = "app.configs.tortoise_config.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."
+
+[build-system]
+requires = [
+    "poetry-core",
+]
+build-backend = "poetry.core.masonry.api"
