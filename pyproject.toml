@@ -11,6 +11,10 @@ fastapi = "^0.118.0"
 uvicorn = "^0.37.0"
 orjson = "3.10.12"
 sqids = "^0.5.2"
+cryptography = "44.0.0"
+aerich = "0.8.1"
+tomlkit = "0.13.2"
+pydantic-settings = "2.7.1"
 
 
 [tool.poetry.group.dev.dependencies]
